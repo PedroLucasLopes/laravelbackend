@@ -27,9 +27,35 @@ class SubtaskController extends Controller
         ], 201);
     }
 
-    public function updateSubtask(Request $req, Subtask $subtask): JsonResponse
+    public function getSubtaskById($id): JsonResponse
+    {
+        $subtask = Subtask::find($id);
+
+        if (!$subtask) {
+            return response()->json([
+                'status' => false,
+                'message' => "Task not found."
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => true,
+            'tasks' => $subtask
+        ], 200);
+    }
+
+    public function updateSubtask(Request $req, $id): JsonResponse
     {
         DB::beginTransaction();
+
+        $subtask = Subtask::find($id);
+
+        if (!$subtask) {
+            return response()->json([
+                'status' => false,
+                'message' => "Subtask not found."
+            ], 404);
+        }
 
         try {
             $subtask->update($req->only(['name', 'is_done']));

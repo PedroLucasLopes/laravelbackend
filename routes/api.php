@@ -16,7 +16,8 @@ Route::post('/tasks', [TasksController::class, 'createTask']); // POST -> APP_UR
 Route::put('/tasks/{taskId}', [TasksController::class, 'updateTask']); // PUT -> APP_URL/api/tasks/{{taskId}}
 Route::delete('/tasks/{taskId}', [TasksController::class, 'deleteTask']); // DELETE -> APP_URL/api/tasks/{{taskId}}
 
-// Subtask Creation
+// Subtask CRUD
+Route::get('/subtasks/{taskId}', [SubtaskController::class, 'getSubtaskById']); // GET -> APP_URL/api/subtasks/{{subtaskId}}
 Route::post('/subtasks/{taskId}', [SubtaskController::class, 'createSubtask']); // POST -> APP_URL/api/subtasks/{{taskId}}
 Route::put('/subtasks/{subtaskId}', [SubtaskController::class, 'updateSubtask']); // PUT -> APP_URL/api/subtasks/{{subtaskId}}
 Route::delete('/subtasks/{subtaskId}', [SubtaskController::class, 'deleteSubtask']); // DELETE -> APP_URL/api/tasks/{{subtaskId}}

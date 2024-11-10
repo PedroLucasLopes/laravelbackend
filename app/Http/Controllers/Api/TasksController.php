@@ -23,12 +23,20 @@ class TasksController extends Controller
         ], 200);
     }
 
-    public function getTaskById(Task $task): JsonResponse
+    public function getTaskById($id): JsonResponse
     {
-        // Return the task by his id
+        $task = Task::find($id);
+
+        if (!$task) {
+            return response()->json([
+                'status' => false,
+                'message' => "Task not found."
+            ], 404);
+        }
+
         return response()->json([
             'status' => true,
-            'tasks' => $task
+            'tasks' => $task->load('subtasks')
         ], 200);
     }
 
@@ -45,7 +53,7 @@ class TasksController extends Controller
 
             return response()->json([
                 'status' => true,
-                'task' => $task,
+                'task' => $task->load('subtasks'),
                 'message' => "Task has been successfully created."
             ], 201);
         } catch (Exception $e) {
@@ -57,9 +65,18 @@ class TasksController extends Controller
         }
     }
 
-    public function updateTask(Request $req, Task $task): JsonResponse
+    public function updateTask(Request $req, $id): JsonResponse
     {
         DB::beginTransaction();
+
+        $task = Task::find($id);
+
+        if (!$task) {
+            return response()->json([
+                'status' => false,
+                'message' => "Task not found."
+            ], 404);
+        }
 
         try {
             $task->update($req->only(['name', 'description', 'is_done']));
