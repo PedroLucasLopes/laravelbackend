@@ -7,60 +7,146 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# 📢 CRUD To-do
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This campaign management system aims primarily to perform a complete maintenance review of pre-established business rules for creating campaigns across various segments.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🧑🏻‍💻 Project Technologies
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- ### 🔶 Laravel
+  - Laravel is a web application framework with expressive, elegant syntax. They believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web application.
+- ### 🐬 MySQL
+  - MySQL is an open-source relational database management system used to store and manage structured data with support for SQL.
+- ### 🧪 PHPUnit
+  - PHPUnit is a testing framework for PHP, used to write and run unit tests to ensure the correctness of code.
 
-## Learning Laravel
+## ⚙️ API routes created in the project
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Tasks
+#### Route to create a task
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```http
+  POST /api/tasks
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Parameters       | Type     | Example Value                                  |
+| :--------------- | :------- | :--------------------------------------------- |
+| `name`           | `string` | Do market                                      |
+| `description`       | `string` | Buy some groceries                                        |
 
-## Laravel Sponsors
+#### Route to get all tasks
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```http
+  GET /api/tasks?page={{page}}
+```
 
-### Premium Partners
+| Query Parameter | Type     | Example Value |
+| :-------- | :------- | :------------ |
+| `page`    | `number` | 1      |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+#### Route to get a task by id
 
-## Contributing
+```http
+  GET /api/tasks/{{id}}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Query Parameter | Type     | Example Value |
+| :-------- | :------- | :------------ |
+| `id`    | `string` | 10      |
 
-## Code of Conduct
+#### Route to update a task
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```http
+  UPDATE /api/tasks/{{id}}
+```
 
-## Security Vulnerabilities
+| Query Parameter | Type     | Example Value |
+| :-------- | :------- | :------------ |
+| `id`    | `string` | 10      |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```http
+  DELETE /api/tasks/{{id}}
+```
 
-## License
+| Query Parameter | Type     | Example Value |
+| :-------- | :------- | :------------ |
+| `id`    | `string` | 10      |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Subtasks
+#### Route to create a subtask
+
+```http
+  POST /api/subtasks/{{taskId}}
+```
+
+| Query Parameter      | Type     | Example Value                                  |
+| :--------------- | :------- | :--------------------------------------------- |
+| `taskId`           | `number` | 10                                     |
+
+#### Route to get a task by id
+
+```http
+  GET /api/subtasks/{{subtaskId}}
+```
+
+| Query Parameter | Type     | Example Value |
+| :-------- | :------- | :------------ |
+| `id`    | `string` | 10      |
+
+#### Route to update a campaign
+
+```http
+  UPDATE /api/subtasks/{{id}}
+```
+
+| Query Parameter | Type     | Example Value |
+| :-------- | :------- | :------------ |
+| `id`    | `string` | 10      |
+
+```http
+  DELETE /api/subtasks/{{id}}
+```
+
+| Query Parameter | Type     | Example Value |
+| :-------- | :------- | :------------ |
+| `id`    | `string` | 10      |
+
+#### Note
+
+- Every route and testing can be checked on <a href="https://www.postman.com/flight-engineer-94720812/workspace/crud-to-do/collection/22348918-7a88604a-9283-4742-986d-b0f6c21e1d93?action=share&creator=22348918&active-environment=22348918-3f914b74-ebf9-4651-abab-8e32f34a55eb">Postman Collection</a>
+
+## ✏️ Project Initialization
+
+To initiate the project, open your bash within the project folder and start with:
+
+```bash
+  composer install
+```
+
+Generate a key
+
+```bash
+  php artisan key:generate
+```
+
+Create Database
+
+```bash
+  php artisan migrate
+```
+
+Start Laravel
+
+```bash
+  php artisan serve
+```
+
+## 🧑🏻‍🎨 Author
+
+- [Pedro Lucas Lopes Paraguai](https://www.github.com/PedroLucasLopes)
+  I have always been determined about what I want as a developer, curious to learn new technologies, and deepen my knowledge in those I work with. Five years ago, I entered the market aiming to showcase my potential by bringing innovations to both Front-end and Back-end realms within the web.
+
+## 🏷️ Tags
+
+[![PHP](https://img.shields.io/badge/-PHP-blue?logo=php)](https://img.shields.io/badge/-php-blue?logo=php)
+[![Laravel](https://img.shields.io/badge/-Laravel-red?logo=laravel)](https://img.shields.io/badge/-laravel-blue?logo=laravel)
