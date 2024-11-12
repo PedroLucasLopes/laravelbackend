@@ -14,12 +14,12 @@ class TasksController extends Controller
     public function getTasks(): JsonResponse
     {
         // Get all tasks on database order by id and descending and his substasks
-        $tasks = Task::with('subtasks')->orderBy('id', 'DESC')->paginate(5);
+        $tasks = Task::with('subtasks')->orderBy('id', 'DESC')->paginate(8);
 
         // Return the response of the tasks on the database
         return response()->json([
             'status' => true,
-            'tasks' => $tasks
+            'tasks' => $tasks,
         ], 200);
     }
 
